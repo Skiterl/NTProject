@@ -1,0 +1,16 @@
+backend/CRM/CRM.Api/bin
+backend/CRM/CRM.Api/.vs
+backend/CRM/CRM.Api/obj
+backend/CRM/CRM.Domain/bin
+backend/CRM/CRM.Domain/obj
+backend/CRM/CRM.Infrastructure/bin
+backend/CRM/CRM.Infrastructure/obj
+backend/CRM/.vs
+backend/ProductService/ProductService.Api/bin
+backend/ProductService/ProductService.Api/.vs
+backend/ProductService/ProductService.Api/obj
+backend/ProductService/ProductService.Domain/bin
+backend/ProductService/ProductService.Domain/obj
+backend/ProductService/ProductService.Infrastructure/bin
+backend/ProductService/ProductService.Infrastructure/obj
+backend/ProductService/.vs
