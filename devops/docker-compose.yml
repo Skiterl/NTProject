@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  crm:
+    build: 
+      context: ../backend/CRM/
+    ports:
+      - "8081:80"
+    links:
+      - user_database
+    depends_on:
+      - user_database
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Production
+    - ASPNETCORE_URLS=http://+:80
+    - CONNECTION_STRING=Host=user_database;Username=postgres;Password=password;Database=user_db;
+
+  product-service:
+    build: 
+      context: ../backend/ProductService/
+    ports:
+      - "8082:80"
+    links:
+      - product_database
+    depends_on:
+      - product_database
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Production
+    - ASPNETCORE_URLS=http://+:80
+    - CONNECTION_STRING=Host=product_database;Username=postgres;Password=password;Database=product_db;
+
+  user_database:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=user_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - user-db-volume:/var/lib/postgresql/data
+
+  product_database:
+    image: postgres:14-alpine
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=product_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - product-db-volume:/var/lib/postgresql/data
+
+volumes:
+  user-db-volume:
+    driver: local
+  product-db-volume:
+    driver: local
